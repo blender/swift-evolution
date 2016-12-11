@@ -65,7 +65,14 @@ let arrayOfOneElement = 1 •| []
 let arrayOrManyElements = 1 •| 2 •| []
 ```
 
-Currently only overloads 2 and 3 can be written as static function on `NonEmptyArray`
+Currently only overloads 2 and 3 can be written as static function on `NonEmptyArray`.
+
+Overload 1 generates the following error message:
+
+```
+error: member operator '•|' must have at least one argument of type 'NonEmptyArray<Element>'
+        public static func •|<Element>(lhs: Element, rhs: [Element]) -> NonEmptyArray<Element>
+```
 
 ## Proposed solution
 
