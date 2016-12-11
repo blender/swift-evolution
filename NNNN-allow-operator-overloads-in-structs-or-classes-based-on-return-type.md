@@ -74,6 +74,9 @@ error: member operator '•|' must have at least one argument of type 'NonEmptyA
         public static func •|<Element>(lhs: Element, rhs: [Element]) -> NonEmptyArray<Element>
 ```
 
+Because of this behavior properties and functions used in the overloads must be
+declared in `NonEmptyArray` with access modifier `fileprivate`.
+
 ## Proposed solution
 
 The proposed solution is to relax the limitation on overloads definable as
@@ -110,6 +113,9 @@ public struct NonEmptyArray<Element> {
     }
 }
 ```
+
+The change would also allow functions and properties used in the overloads
+to be declared with access modifier `private` instead of `fileprivate`.
 
 ## Impact on existing code
 
