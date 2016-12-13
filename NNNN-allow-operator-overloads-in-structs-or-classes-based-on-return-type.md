@@ -103,9 +103,9 @@ public func •|<Element>(lhs: Element, rhs: [Element]) -> NonEmptyArray<Element
 }
 ```
 
-The current design seems to impose and artificial limitation on type
-signatures of functions that begin with a special set of characters
-(the symbols chosen as operators).
+The current design seems to impose an artificial limitation on type
+signatures of functions that begin with a special set of characters, namely
+the symbols chosen for operator.
 
 ## Proposed solution
 
