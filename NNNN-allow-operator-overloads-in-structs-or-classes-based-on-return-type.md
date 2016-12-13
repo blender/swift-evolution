@@ -77,6 +77,36 @@ error: member operator '•|' must have at least one argument of type 'NonEmptyA
 Because of this behavior properties and functions used in the overloads must be
 declared in `NonEmptyArray` with access modifier `fileprivate`.
 
+One way around the problem is to declare a static function with the desired
+functionality like in the following snippet
+
+```
+public struct NonEmptyArray<Element> {
+
+    private var elements: Array<Element>
+
+    private init(array: [Element]) {
+        self.elements = array
+    }
+
+    public static func cons<Element>(lhs: Element, rhs: [Element]) -> NonEmptyArray<Element> {
+        return NonEmptyArray<Element>(array: rhs + [lhs])
+    }
+```
+
+and in the implementation of the operator call the static function
+
+```
+//Overload 1
+public func •|<Element>(lhs: Element, rhs: [Element]) -> NonEmptyArray<Element> {
+    return NonEmptyArray.cons(array: rhs + [lhs])
+}
+```
+
+The current design seems to impose and artificial limitation on type
+signatures of functions that begin with a special set of characters
+(the symbols chosen as operators).
+
 ## Proposed solution
 
 The proposed solution is to relax the limitation on overloads definable as
